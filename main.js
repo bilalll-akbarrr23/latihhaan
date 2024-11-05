@@ -1,6 +1,9 @@
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
 const menuBtnIcon = menuBtn.querySelector("i");
+const imageContent = document.getElementById("image-content");
+const displayedImage = document.getElementById("displayed-image");
+const imageDescription = document.getElementById("image-description");
 
 menuBtn.addEventListener("click", (e) => {
   navLinks.classList.toggle("open");
@@ -10,8 +13,14 @@ menuBtn.addEventListener("click", (e) => {
 });
 
 navLinks.addEventListener("click", (e) => {
-  navLinks.classList.remove("open");
-  menuBtnIcon.setAttribute("class", "ri-menu-line");
+  if (e.target.classList.contains('nav-item')) {
+    const imageName = e.target.getAttribute('data-image');
+    displayedImage.src = `D:/praktikum konsep web mobile/SoulTravel_15-06-24-main/assets/${imageName}`;
+    imageContent.classList.remove("hidden");
+    imageDescription.textContent = `Menampilkan gambar: ${imageName}`;
+    navLinks.classList.remove("open");
+    menuBtnIcon.setAttribute("class", "ri-menu-line");
+  }
 });
 
 const scrollRevealOption = {
